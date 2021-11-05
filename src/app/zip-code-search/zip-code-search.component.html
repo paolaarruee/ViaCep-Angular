@@ -1,0 +1,40 @@
+<div *ngIf="!streetData">
+    <h2>Digite o cep para ser localizado:</h2>
+
+    <form (ngSubmit)="getStreetData(zipCode)" #zipCodeForm="ngForm">
+        <input type="text" name="zipCode" [(ngModel)]="zipCode" required>
+        <br />
+        <button type="submit" [disabled]="zipCodeForm.invalid">Pesquisar</button>
+    </form>
+</div>
+
+<br>
+
+<div *ngIf="streetData">
+    <div class="info">
+        <h4>CEP:</h4>
+        {{ streetData.cep }}
+    </div>
+
+    <div class="info">
+        <h4>Logradouro:</h4>
+        {{ streetData.logradouro }}
+    </div>
+
+    <div class="info">
+        <h4>Bairro:</h4>
+        {{ streetData.bairro }}
+    </div>
+
+    <div class="info">
+        <h4>Cidade:</h4>
+        {{ streetData.localidade }}
+    </div>
+
+    <div class="info">
+        <h4>Estado:</h4>
+        {{ streetData.uf }}
+    </div>
+
+    <button type="button" class="search-again" (click)="cleanStreetData()">Consultar outro CEP</button>
+</div>
